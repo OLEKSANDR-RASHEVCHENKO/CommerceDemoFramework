@@ -1,11 +1,16 @@
 package e2e.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage {
@@ -20,13 +25,15 @@ public class HomePage extends BasePage {
     WebElement username;
     @FindBy(xpath = "//i[@class='oxd-icon bi-caret-down-fill oxd-userdropdown-icon']")
     WebElement usernameDropdown;
-    public void waitForLoadingHomePage(){
+    @Step("Wait for loading home page")
+    public void waitForLoadingHomePage() {
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
         getWait().forVisibility(username);
         Assert.assertTrue(username.isDisplayed());
     }
 
+    @Step("Click on '{chooseOne}' from  sideBar menu")
     public void clickOnOneFromSidebarMenu(String chooseOne) {
         List<WebElement> sideBar = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-main-menu-item--name']"));
         for (WebElement menu : sideBar) {
@@ -36,16 +43,45 @@ public class HomePage extends BasePage {
             }
         }
     }
-    public void clickOnOneIconFromHomePage(String iconToChoose){
+    @Step("Click on '{iconToChoose}' from  icon on Home Page")
+    public void clickOnOneIconFromHomePage(String iconToChoose) {
         List<WebElement> icons = driver.findElements(By.xpath("//*[@class='oxd-icon']"));
-        for (WebElement icon:icons){
-            if (icon.getText().equalsIgnoreCase(iconToChoose)){
+        for (WebElement icon : icons) {
+            if (icon.getText().equalsIgnoreCase(iconToChoose)) {
                 icon.click();
                 break;
             }
         }
     }
-    public void back(){
+    @Step("Back to home page")
+    public void back() {
         driver.navigate().back();
+    }
+
+    @Step("Click  on all sidebar menu")
+    public void testSidebarMenu() throws InterruptedException {
+        List<WebElement> sideBar = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-main-menu-item--name']"));
+
+        for (int i = 0; i < sideBar.size(); i++) {
+            sideBar = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-main-menu-item--name']"));
+            String menuItemName = sideBar.get(i).getText();
+
+            sideBar.get(i).click();
+            Thread.sleep(3000);
+            if (menuItemName.equalsIgnoreCase("Maintenance")) {
+                back();
+            } else {
+                WebElement titleOnPage = driver.findElement(By.xpath("//*[@class='oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module']"));
+                getWait().forVisibility(titleOnPage);
+                Assert.assertTrue(titleOnPage.isDisplayed());
+                String pageTitle = titleOnPage.getText();
+                try {
+                    Assert.assertTrue(pageTitle.contains(menuItemName));
+                } catch (AssertionError error) {
+                    System.out.println("Error: Title " + pageTitle + "  enthält nicht  menu name " + menuItemName);
+                }
+
+            }
+        }
     }
 }

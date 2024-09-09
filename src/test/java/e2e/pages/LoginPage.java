@@ -21,7 +21,7 @@ public class LoginPage extends BasePage{
     WebElement userName;
     @FindBy(xpath = "//*[@name='password']")
     WebElement passwordField;
-    @FindBy(xpath = "//*[text()=' Login ']")
+    @FindBy(xpath = "//button[normalize-space()='Login']")
     WebElement loginButton;
     @FindBy(xpath = "//a[normalize-space()='OrangeHRM, Inc']")
     WebElement linkToOtherPage;
