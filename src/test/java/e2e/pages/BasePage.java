@@ -115,7 +115,8 @@ public class BasePage {
             e.printStackTrace();
         }
     }
-    public void deleteText(WebElement element){
+
+    public void deleteText(WebElement element) {
         element.click();
         element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.BACK_SPACE);

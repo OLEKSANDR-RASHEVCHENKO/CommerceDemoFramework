@@ -59,3 +59,25 @@ task LoginTestNegative(type: Test) {
     }
     systemProperty 'allure.result.directory', 'build/allure-results'
 }
+task HomePageSmokeTest(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/HomePageSmokeTest.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+task MyInfoPageSmokeTest(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/MyInfoPageSmokeTest.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+

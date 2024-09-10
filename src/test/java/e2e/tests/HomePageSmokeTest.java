@@ -2,16 +2,18 @@ package e2e.tests;
 
 import e2e.pages.HomePage;
 import e2e.pages.LoginPage;
-import e2e.pages.MyInfoPage;
-import e2e.pages.OrangePage;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Set;
 
 public class HomePageSmokeTest extends BaseTest{
     LoginPage loginPage;
     HomePage homePage;
+    @Feature("Home Page Smoke Test")
+    @Story("Verify login and sidebar navigation functionality")
+    @Description("Smoke test to verify the login functionality and interaction with the sidebar menu on the Home Page")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void smokeTestOnHomePage() throws InterruptedException {
         String username = "Admin";

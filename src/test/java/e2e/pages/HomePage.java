@@ -25,7 +25,8 @@ public class HomePage extends BasePage {
     WebElement username;
     @FindBy(xpath = "//i[@class='oxd-icon bi-caret-down-fill oxd-userdropdown-icon']")
     WebElement usernameDropdown;
-    @Step("Wait for loading home page")
+
+    @Step("Wait for Home page to fully load")
     public void waitForLoadingHomePage() {
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
@@ -33,7 +34,7 @@ public class HomePage extends BasePage {
         Assert.assertTrue(username.isDisplayed());
     }
 
-    @Step("Click on '{chooseOne}' from  sideBar menu")
+    @Step("Click on '{chooseOne}' from the side menu")
     public void clickOnOneFromSidebarMenu(String chooseOne) {
         List<WebElement> sideBar = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-main-menu-item--name']"));
         for (WebElement menu : sideBar) {
@@ -43,7 +44,8 @@ public class HomePage extends BasePage {
             }
         }
     }
-    @Step("Click on '{iconToChoose}' from  icon on Home Page")
+
+    @Step("Click on icon '{iconToChoose}' from Home Page")
     public void clickOnOneIconFromHomePage(String iconToChoose) {
         List<WebElement> icons = driver.findElements(By.xpath("//*[@class='oxd-icon']"));
         for (WebElement icon : icons) {
@@ -53,12 +55,13 @@ public class HomePage extends BasePage {
             }
         }
     }
-    @Step("Back to home page")
+
+    @Step("Navigate back to the previous page")
     public void back() {
         driver.navigate().back();
     }
 
-    @Step("Click  on all sidebar menu")
+    @Step("Click on each item in the sidebar menu and verify page navigation")
     public void testSidebarMenu() throws InterruptedException {
         List<WebElement> sideBar = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-main-menu-item--name']"));
 

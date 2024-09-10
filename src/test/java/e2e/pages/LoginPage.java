@@ -10,11 +10,12 @@ import org.testng.Assert;
 import java.security.cert.X509Certificate;
 import java.util.List;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@class='oxd-text oxd-text--h5 orangehrm-login-title']")
     WebElement header;
     @FindBy(xpath = "//*[@name='username']")
@@ -28,9 +29,10 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//p[@class='oxd-text oxd-text--p oxd-alert-content-text']")
     WebElement errorMassageInvalidCredentials;
 
-    List<WebElement>errors = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
-@Step("Wait for loading login page")
-    public void waitForLoadingLoginPage(){
+    List<WebElement> errors = driver.findElements(By.xpath("//*[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
+
+    @Step("Wait for the login page to load")
+    public void waitForLoadingLoginPage() {
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
         getWait().forVisibility(loginButton);
@@ -42,32 +44,38 @@ public class LoginPage extends BasePage{
         getWait().forVisibility(linkToOtherPage);
         Assert.assertTrue(linkToOtherPage.isDisplayed());
     }
-    @Step("Login as user:{username},{password}")
-    public void setLoginData(String email,String password){
+
+    @Step("Login with username: {email} and password: {password}")
+    public void setLoginData(String email, String password) {
         userName.sendKeys(email);
         passwordField.sendKeys(password);
         loginButton.click();
     }
-    @Step("Click on OrangeHRM link")
-    public void clickOnOrangeHRM(){
+
+    @Step("Click on the OrangeHRM link")
+    public void clickOnOrangeHRM() {
         linkToOtherPage.click();
     }
-    @Step("Current Url on Login page")
-    public String getCurrentUrl(){
-        String currentUrl=driver.getCurrentUrl();
+
+    @Step("Get current URL on the login page")
+    public String getCurrentUrl() {
+        String currentUrl = driver.getCurrentUrl();
         return currentUrl;
     }
-    public String getWindow(){
-        String windowHandle=driver.getWindowHandle();
+    @Step("Get current window handle")
+    public String getWindow() {
+        String windowHandle = driver.getWindowHandle();
         return windowHandle;
     }
-    @Step("Invalid Gredentials is Displayed ")
-    public void invalidCredentialsIsDisplayed(){
+
+    @Step("Check if 'Invalid Credentials' message is displayed")
+    public void invalidCredentialsIsDisplayed() {
         getWait().forVisibility(errorMassageInvalidCredentials);
         Assert.assertTrue(errorMassageInvalidCredentials.isDisplayed());
     }
-    @Step("Fields errors are displayed")
-    public void waitForFieldsErrors(){
+
+    @Step("Check if form field errors are displayed")
+    public void waitForFieldsErrors() {
         getWait().forAllVisibility(errors);
     }
 }

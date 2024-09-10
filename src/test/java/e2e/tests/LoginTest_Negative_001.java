@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 
 public class LoginTest_Negative_001 extends BaseTest {
     LoginPage loginPage;
-    @Feature(value = "LoginNegativeTest")
-    @Story(value = "User can  not login with false data")
-    @Description(value = "Checking  negative Login process on opensource-demo.orangehmlive.com")
+    @Feature("Login Negative Test")
+    @Story("User cannot log in with invalid credentials")
+    @Description("Checking negative login scenarios on opensource-demo.orangehmlive.com using invalid data.")
     @Severity(SeverityLevel.CRITICAL)
     @Test(dataProvider = "invalidLoginData", dataProviderClass = DataProvider.class)
     public void negativeLoginTests(String userName, String password, String scenario) {

@@ -12,11 +12,11 @@ public class LoginTest_Positive_001 extends BaseTest {
     LoginPage loginPage;
     OrangePage orangePage;
 
-    @Feature(value = "LoginPositiveTest")
-    @Story(value = "User can login with correct data")
-    @Description(value = "Checking Login process on opensource-demo.orangehmlive.com")
+    @Feature("Login Positive Test")
+    @Story("User can log in with correct data")
+    @Description("Checking login process and navigating to OrangeHRM page from opensource-demo.orangehmlive.com")
     @Severity(SeverityLevel.CRITICAL)
-    @Test(description = "Positive Login test")
+    @Test(description = "Positive login test with valid credentials")
     public void loginInSystem() {
         String username = "Admin";
         String password = "admin123";

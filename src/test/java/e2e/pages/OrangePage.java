@@ -6,30 +6,36 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class OrangePage extends BasePage{
+public class OrangePage extends BasePage {
 
     public OrangePage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//*[@class='navbar-brand nav-logo']")
     WebElement headerOnOrangePage;
-    @Step("Wait for loading Orange page")
-    public void waitForOrangePage(){
+
+    @Step("Wait for Orange page to fully load")
+    public void waitForOrangePage() {
         getWait().forVisibility(headerOnOrangePage);
 
     }
-    public String getTitle(){
+    @Step("Get the page title")
+    public String getTitle() {
         String title = driver.getTitle();
         return title;
     }
-@Step("Get current Url on Orange page")
-    public String getCurrentUrl(){
-        String currentUrl=driver.getCurrentUrl();
+
+    @Step("Get the current URL of the Orange page")
+    public String getCurrentUrl() {
+        String currentUrl = driver.getCurrentUrl();
         return currentUrl;
     }
-    public String getWindow(){
-        String windowHandle=driver.getWindowHandle();
+    @Step("Get the window handle")
+    public String getWindow() {
+        String windowHandle = driver.getWindowHandle();
         return windowHandle;
 
 
-}}
+    }
+}
