@@ -19,7 +19,7 @@ public class ApplicationManager {
     public void init() {
             driver = new EdgeDriver();
         driver.get(config.getProjectUrl());
-        driver.manage().window().setSize(new Dimension(config.getWindowWeight(), config.getWindowHeight()));
+        driver.manage().window().maximize();
     }
 
 
