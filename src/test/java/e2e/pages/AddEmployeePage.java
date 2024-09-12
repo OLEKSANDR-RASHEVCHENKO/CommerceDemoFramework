@@ -83,6 +83,7 @@ public class AddEmployeePage extends BasePage {
         lastName.sendKeys(lastNam);
         employeeId.sendKeys(String.valueOf(id));
         uploadPhoto.sendKeys(photoPath);
+        getWait().forVisibility(radioButtonLoginDetails);
         radioButtonLoginDetails.click();
         getWait().forVisibility(userName);
         getWait().forVisibility(password);

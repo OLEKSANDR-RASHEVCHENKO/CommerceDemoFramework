@@ -135,7 +135,7 @@ public class MyInfoPage extends BasePage {
         }
     }
     @Step("Select birth date: month {monthss}, year {yaer}, day {day}")
-    public void selectMonthAndDateOnBirthData(String monthss,String yaer,String day) throws InterruptedException {
+    public void selectMonthAndDateOnBirthData(String monthss,String yaer,String day){
         dataOfBirth.click();
         driver.findElement(By.xpath("//*[@class='oxd-calendar-selector-month-selected']")).click();
         List<WebElement> months=driver.findElements(By.xpath("//*[@class='oxd-calendar-dropdown--option']"));
@@ -160,12 +160,12 @@ public class MyInfoPage extends BasePage {
         days.click();
     }
     @Step("Save personal details")
-    public void savePersonalDetails() throws InterruptedException {
+    public void savePersonalDetails() {
         WebElement saveButton = driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//button[@type='submit'][normalize-space()='Save']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
     }
     @Step("Upload photo and save")
-    public void uploadPhoto(String filePath,String textComent) throws InterruptedException {
+    public void uploadPhoto(String filePath,String textComent)  {
         WebElement attachmentButton = driver.findElement(By.xpath("//*[@class='oxd-button oxd-button--medium oxd-button--text']"));
         getWait().forVisibility(attachmentButton);
         attachmentButton.click();
@@ -183,7 +183,7 @@ public class MyInfoPage extends BasePage {
         Assert.assertTrue(successMessage.isDisplayed());
     }
     @Step("Get username from user dropdown")
-    public String getUserName () throws InterruptedException {
+    public String getUserName ()  {
         WebElement userName = driver.findElement(By.xpath("//*[@class='oxd-userdropdown-tab']"));
         getWait().forVisibility(userName);
         return userName.getText();

@@ -90,4 +90,14 @@ task PIMFunctionalPositivTest(type: Test) {
     }
     systemProperty 'allure.result.directory', 'build/allure-results'
 }
+task PIMNegativeTests(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/PIMModuleNegetiveTests.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
 
