@@ -6,6 +6,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
 
@@ -17,7 +18,7 @@ public class ApplicationManager {
     public WebDriver driver;
 
     public void init() {
-            driver = new EdgeDriver();
+        driver = new EdgeDriver();
         driver.get(config.getProjectUrl());
         driver.manage().window().maximize();
     }
